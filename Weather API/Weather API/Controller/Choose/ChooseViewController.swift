@@ -17,11 +17,12 @@ class ChooseViewController: UIViewController {
     
     // MARK: - Variables
     var leftBarButton_cancle: UIBarButtonItem?
-    let areaArray: [String] = ["基隆市", "臺北市", "新北市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "臺中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "臺南市", "高雄市", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", " 連江線"]
+    let areaArray: [String] = ["基隆市", "臺北市", "新北市", "桃園市", "新竹市", "新竹縣", "苗栗縣", "臺中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "臺南市", "高雄市", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"]
     var saveArea: String = ""
     var recieveArea: String = ""
     var SendArea: SendArea?
     var reloadAView: ReloadTableViewDelegate?
+    
     var reloadAPI: ReloadAPI?
     // MARK: - LifeCycle
     
@@ -43,7 +44,7 @@ class ChooseViewController: UIViewController {
         super.viewWillDisappear(animated)
         reloadAPI?.reloadAPI(area: self.saveArea)
         SendArea?.sendArea(Area: saveArea)
-        reloadAView?.reloadtableview()
+//        reloadAView?.reloadtableview()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,6 +96,8 @@ extension ChooseViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == register_index {
                 cell.accessoryView = checkmarkView
             }
+            
+            saveArea = recieveArea
         }
         
         return cell
